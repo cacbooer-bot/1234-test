@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hospital Management Login</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #f3e9f1, #fdfaf6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .login-box {
+            background: #ffffff;
+            width: 360px;
+            padding: 38px;
+            border-radius: 18px;
+            box-shadow: 0 20px 45px rgba(90, 70, 100, 0.15);
+        }
+
+        .login-box h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-family: 'Playfair Display', serif;
+            color: #6d4c73;
+        }
+
+        label {
+            font-size: 14px;
+            color: #7a6a7d;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 1px solid #e2d6df;
+            border-radius: 10px;
+            background: #faf7f9;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #b08bb6;
+            background: #ffffff;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #b08bb6, #d7b9c9);
+            border: none;
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .message {
+            margin-top: 15px;
+            font-size: 13px;
+            text-align: center;
+            display: none;
+        }
+
+        .error {
+            color: #a94442;
+        }
+
+        .success {
+            color: #3c763d;
+        }
+
+        .forgot {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 13px;
+        }
+
+        .forgot a {
+            color: #6d4c73;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-box">
+    <h2>Hospital Management<br>Login</h2>
+
+    <label>Username</label>
+    <input type="text" id="username" placeholder="Enter your username">
+
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Enter your password">
+
+    <button onclick="login()">Login</button>
+
+    <div id="msg" class="message"></div>
+
+    <div class="forgot">
+        Forgot your password? <a href="#">Click here</a>
+    </div>
+</div>
+
+<script>
+    function login() {
+        let usernameInput = document.getElementById("username");
+        let passwordInput = document.getElementById("password");
+        let user = usernameInput.value;
+        let pass = passwordInput.value;
+        let msg  = document.getElementById("msg");
+
+        // Reset message
+        msg.style.display = "none";
+        msg.className = "message";
+
+        if (user === "" || pass === "") {
+            msg.textContent = "Please fill in all fields";
+            msg.classList.add("error");
+            msg.style.display = "block";
+        }
+        else if (user === "admin" && pass === "1234") {
+            msg.textContent = "Login successful ✔️";
+            msg.classList.add("success");
+            msg.style.display = "block";
+        }
+        else {
+            msg.textContent = "Incorrect username or password";
+            msg.classList.add("error");
+            msg.style.display = "block";
+
+            // Clear inputs when credentials are wrong
+            usernameInput.value = "";
+            passwordInput.value = "";
+            usernameInput.focus();
+        }
+    }
+</script>
+
+</body>
+</html>
